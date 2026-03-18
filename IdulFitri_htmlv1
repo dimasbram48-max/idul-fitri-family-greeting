@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Hari Raya Idul Fitri - Keluarga Ananto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D4AF37;
+            --accent-color: #E8D5B7;
+            --dark-color: #2C1810;
+            --light-color: #FFF8F0;
+            --green-color: #1B7B4F;
+            --soft-gold: #F5DEB3;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2C1810 0%, #8B4513 50%, #1B7B4F 100%);
+            color: var(--dark-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .stars::before,
+        .stars::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .music-btn {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .music-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: left 0.5s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .music-btn:hover::before {
+            left: 100%;
+        }
+
+        .music-btn.playing {
+            animation: musicPulse 0.8s ease-in-out infinite;
+        }
+
+        .music-btn.playing .music-icon {
+            animation: musicBounce 0.6s ease-in-out infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 4px 30px rgba(212, 175, 55, 0.8); }
+        }
+
+        @keyframes musicBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.95) 0%, rgba(232, 213, 183, 0.9) 100%);
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: movePattern 20s linear infinite;
+        }
+
+        @keyframes movePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .title {
+            font-size: 3.5rem;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            font-weight: bold;
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }
+            50% { text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(212, 175, 55, 0.3); }
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: var(--green-color);
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+            animation: fadeInZoom 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInZoom {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .lantern,
+        .lantern-2 {
+            width: 60px;
+            height: 80px;
+            margin: 30px auto 0;
+            background: linear-gradient(90deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+            border-radius: 50% 50% 60% 60%;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5), 
+                        inset -2px 0 10px rgba(0, 0, 0, 0.2),
+                        0 0 50px rgba(255, 215, 0, 0.3);
+            animation: swing 3s ease-in-out infinite;
+        }
+
+        .lantern-2 {
+            animation: swing 3s ease-in-out infinite reverse;
+        }
+
+        .lantern::before,
+        .lantern::after,
+        .lantern-2::before,
+        .lantern-2::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: #DAA520;
+            top: -15px;
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
+        }
+
+        .lantern::after,
+        .lantern-2::after {
+            top: auto;
+            bottom: -15px;
+        }
+
+        @keyframes swing {
+            0%, 100% { 
+                transform: rotateZ(-5deg);
+                filter: drop-shadow(5px 0 10px rgba(0, 0, 0, 0.3));
+            }
+            50% { 
+                transform: rotateZ(5deg);
+                filter: drop-shadow(-5px 0 10px rgba(0, 0, 0, 0.3));
+            }
+        }
+
+        .opening-greeting {
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .greeting-box {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--soft-gold) 100%);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            border: 3px solid var(--dark-color);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .greeting-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .greeting-box:hover::before {
+            left: 100%;
+        }
+
+        .greeting-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35);
+        }
+
+        .greeting-title {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            animation: slideInLeft 0.6s ease-out 0.4s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .greeting-main {
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            animation: slideInRight 0.6s ease-out 0.5s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .main-message {
+            font-size: 2.5rem;
+            color: var(--green-color);
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.8s ease-out 0.6s both;
+            position: relative;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main-message::before,
+        .main-message::after {
+            content: '✦';
+            margin: 0 10px;
+            display: inline-block;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        .sub-message {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            margin: 20px 0;
+            font-style: italic;
+            line-height: 1.6;
+            animation: fadeIn 0.6s ease-out 0.7s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .blessing-text {
+            font-size: 1rem;
+            color: var(--dark-color);
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid rgba(44, 24, 16, 0.3);
+            font-style: italic;
+            animation: fadeIn 0.6s ease-out 0.8s both;
+        }
+
+        .greeting-section {
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .greeting-card {
+            background: var(--light-color);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .greeting-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+            animation: slideInHorizontal 1.5s ease-in-out infinite;
+        }
+
+        @keyframes slideInHorizontal {
+            0%, 100% { 
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        .greeting-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 45px rgba(0, 0, 0, 0.3);
+        }
+
+        .greeting-text {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .greeting-text.special {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--green-color);
+            margin: 30px 0;
+            animation: bounce 0.8s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .greeting-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .gallery-section {
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+
+        .gallery-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 100%;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+            animation: imageZoom 0.8s ease-out;
+            background: linear-gradient(135deg, #D4AF37 0%, #1B7B4F 100%);
+            padding: 20px;
+            font-size: 3rem;
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes imageZoom {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: var(--light-color);
+            padding: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            animation: slideUpCaption 0.6s ease-out;
+        }
+
+        @keyframes slideUpCaption {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .gallery-description {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--light-color);
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(27, 123, 79, 0.7);
+            border-radius: 10px;
+            line-height: 1.6;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-description:hover {
+            background: rgba(27, 123, 79, 0.9);
+            border-color: var(--secondary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--light-color);
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+            margin: 15px auto 0;
+            border-radius: 2px;
+            animation: expandWidth 0.8s ease-out;
+        }
+
+        @keyframes expandWidth {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100px;
+            }
+        }
+
+        .family-section {
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .family-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .family-card {
+            background: linear-gradient(135deg, var(--light-color) 0%, var(--accent-color) 100%);
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
+            border: 2px solid transparent;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .family-card:nth-child(1) { animation-delay: 0.1s; }
+        .family-card:nth-child(2) { animation-delay: 0.2s; }
+        .family-card:nth-child(3) { animation-delay: 0.3s; }
+        .family-card:nth-child(4) { animation-delay: 0.4s; }
+        .family-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .family-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .family-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .family-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-color: var(--secondary-color);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--light-color) 100%);
+        }
+
+        .family-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        .family-card:nth-child(1) .family-icon { animation-delay: 0s; }
+        .family-card:nth-child(2) .family-icon { animation-delay: 0.2s; }
+        .family-card:nth-child(3) .family-icon { animation-delay: 0.4s; }
+        .family-card:nth-child(4) .family-icon { animation-delay: 0.6s; }
+        .family-card:nth-child(5) .family-icon { animation-delay: 0.8s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .family-card h3 {
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .family-card:hover h3 {
+            color: var(--green-color);
+            text-shadow: 0 0 10px rgba(27, 123, 79, 0.3);
+        }
+
+        .family-card p {
+            font-size: 0.95rem;
+            color: var(--green-color);
+            transition: all 0.3s ease;
+        }
+
+        .family-card:hover p {
+            color: var(--primary-color);
+        }
+
+        .family-quote {
+            font-size: 0.85rem !important;
+            color: var(--primary-color) !important;
+            font-style: italic;
+            margin-top: 10px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .family-card:hover .family-quote {
+            opacity: 1;
+            color: var(--secondary-color) !important;
+        }
+
+        .message-section {
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease-out 0.7s both;
+        }
+
+        .message-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .message-card {
+            background: linear-gradient(135deg, rgba(27, 123, 79, 0.9) 0%, rgba(44, 24, 16, 0.8) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            color: var(--light-color);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-left: 5px solid var(--secondary-color);
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .message-card:nth-child(1) { animation-delay: 0.1s; }
+        .message-card:nth-child(2) { animation-delay: 0.2s; }
+        .message-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .message-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+            border-left-color: var(--light-color);
+        }
+
+        .message-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .message-card:hover h3 {
+            transform: translateX(5px);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .message-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--light-color);
+        }
+
+        .quotes-section {
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .quotes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .quote-card {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.8) 0%, rgba(27, 123, 79, 0.8) 100%);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--secondary-color);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .quote-card:nth-child(1) { animation-delay: 0.1s; }
+        .quote-card:nth-child(2) { animation-delay: 0.2s; }
+        .quote-card:nth-child(3) { animation-delay: 0.3s; }
+        .quote-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .quote-card::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--secondary-color);
+            position: absolute;
+            top: -20px;
+            left: 15px;
+            opacity: 0.2;
+            transition: all 0.4s ease;
+        }
+
+        .quote-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+            border-color: var(--light-color);
+        }
+
+        .quote-card:hover::before {
+            top: 10px;
+            opacity: 0.4;
+        }
+
+        .quote-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .quote-text {
+            font-size: 1.05rem;
+            color: var(--light-color);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-author {
+            text-align: right;
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .quote-card:hover .quote-author {
+            color: var(--light-color);
+            transform: translateX(5px);
+        }
+
+        .decorative-pattern {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin: 50px 0;
+            letter-spacing: 20px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .star-decoration {
+            display: inline-block;
+            animation: sparkle 1.5s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .star-decoration:nth-child(1) { animation-delay: 0s; }
+        .star-decoration:nth-child(2) { animation-delay: 0.3s; }
+        .star-decoration:nth-child(3) { animation-delay: 0.6s; }
+
+        .decorative-pattern:hover .star-decoration {
+            color: var(--light-color);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        @keyframes sparkle {
+            0%, 100% { 
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .closing-section {
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease-out 0.9s both;
+        }
+
+        .closing-card {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--soft-gold) 100%);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--dark-color);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .closing-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, rgba(255, 255, 255, 0) 0deg, rgba(255, 255, 255, 0.1) 90deg, rgba(255, 255, 255, 0) 180deg);
+            animation: rotateAnim 10s linear infinite;
+        }
+
+        @keyframes rotateAnim {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .closing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .closing-card h2 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .closing-card p {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 0.6s ease-out 0.2s both;
+        }
+
+        .closing-blessing {
+            font-size: 1.8rem;
+            color: var(--green-color);
+            margin: 30px 0;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+            animation: heartBeat 1.2s ease-in-out infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            14% { transform: scale(1.15); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.15); }
+            70% { transform: scale(1); }
+        }
+
+        .closing-subtitle {
+            font-size: 1rem;
+            color: var(--dark-color);
+            font-style: italic;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 0.6s ease-out 0.3s both;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(44, 24, 16, 0.8);
+            border-radius: 10px;
+            color: var(--light-color);
+            margin-top: 50px;
+            font-size: 0.95rem;
+            animation: slideInUp 0.6s ease-out 1s both;
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        .footer:hover {
+            background: rgba(44, 24, 16, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-love {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            animation: heartPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .title { font-size: 2.2rem; }
+            .subtitle { font-size: 1.3rem; }
+            .header { padding: 40px 20px; }
+            .section-title { font-size: 1.8rem; }
+            .family-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+            .message-cards, .quotes-container { grid-template-columns: 1fr; }
+            .greeting-card { padding: 25px; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 20px 10px; }
+            .title { font-size: 1.8rem; }
+            .subtitle { font-size: 1.1rem; }
+            .header { padding: 30px 15px; }
+            .family-grid { grid-template-columns: 1fr; }
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(44, 24, 16, 0.3);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--secondary-color) 0%, var(--green-color) 100%);
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="stars"></div>
+    
+    <!-- Music Control Button -->
+    <div class="music-control">
+        <button id="musicToggle" class="music-btn" title="Nyalakan Musik">
+            <span class="music-icon">🔊</span>
+        </button>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">Selamat Hari Raya Idul Fitri</h1>
+            <p class="subtitle">Keluarga Ananto</p>
+            <div class="lantern"></div>
+            <div class="lantern lantern-2"></div>
+        </header>
+
+        <!-- Opening Greeting -->
+        <section class="opening-greeting">
+            <div class="greeting-box">
+                <h2 class="greeting-title">Dengan Segala Kerendahan Hati</h2>
+                <p class="greeting-main">Kami Keluarga Ananto dengan penuh ketulusan mengucapkan:</p>
+                <h3 class="main-message">
+                    Selamat Hari Raya Idul Fitri 1447 H 🌙
+                </h3>
+                <p class="sub-message">Semoga di hari yang mulia ini, kita semua mendapatkan berkah, ampunan, dan rahmat dari Allah SWT.</p>
+                <p class="blessing-text">
+                    "Barangsiapa yang berpuasa pada bulan Ramadan dengan iman dan mengharap pahala dari Allah, maka dosanya yang telah lalu akan diampuni." (HR. Bukhari)
+                </p>
+            </div>
+        </section>
+
+        <!-- Greeting Message -->
+        <section class="greeting-section">
+            <div class="greeting-card">
+                <p class="greeting-text">
+                    Idul Fitri adalah momentum istimewa untuk kita semua berbagi cinta, kasih sayang, dan kebaikan kepada setiap orang di sekitar kita.
+                </p>
+                <p class="greeting-text special">
+                    "Mohon maaf lahir dan batin" 🙏
+                </p>
+                <p class="greeting-text">
+                    Mari kita rayakan hari kemenangan ini dengan penuh kebersamaan, ketulusan, dan tulus ikhlas dalam setiap tindakan kita.
+                </p>
+            </div>
+        </section>
+
+        <!-- Family Photo Gallery -->
+        <section class="gallery-section">
+            <h2 class="section-title">Galeri Keluarga Kami</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="idulfitri2026.png" alt="Keluarga Ananto - Idul Fitri 2026" class="gallery-image">
+                    <div class="gallery-caption">Keluarga Ananto - Idul Fitri 1447 H</div>
+                </div>
+            </div>
+            <p class="gallery-description">
+                Momen indah bersama keluarga tercinta adalah harta yang paling berharga. 
+                Terima kasih telah menjadi bagian dari perjalanan hidup kami.
+            </p>
+        </section>
+
+        <!-- Family Members -->
+        <section class="family-section">
+            <h2 class="section-title">Anggota Keluarga Kami</h2>
+            <div class="family-grid">
+                <div class="family-card">
+                    <div class="family-icon">👨</div>
+                    <h3>Ayah</h3>
+                    <p>Kepala Keluarga</p>
+                    <p class="family-quote">"Cahaya harapan dan penuntun jalan"</p>
+                </div>
+                <div class="family-card">
+                    <div class="family-icon">👩</div>
+                    <h3>Ibu</h3>
+                    <p>Jantung Keluarga</p>
+                    <p class="family-quote">"Sumber cinta dan kehangatan"</p>
+                </div>
+                <div class="family-card">
+                    <div class="family-icon">👨</div>
+                    <h3>Abang Rizal</h3>
+                    <p>Kakak Tertua</p>
+                    <p class="family-quote">"Panutan dan inspirasi"</p>
+                </div>
+                <div class="family-card">
+                    <div class="family-icon">👨</div>
+                    <h3>Abang Abiel</h3>
+                    <p>Kakak Kedua</p>
+                    <p class="family-quote">"Sahabat dan penolong setia"</p>
+                </div>
+                <div class="family-card">
+                    <div class="family-icon">👤</div>
+                    <h3>Saya (Dimasbram48-max)</h3>
+                    <p>Adik Bungsu</p>
+                    <p class="family-quote">"Harapan dan kebanggaan keluarga"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Messages -->
+        <section class="message-section">
+            <h2 class="section-title">Pesan Spesial Kami</h2>
+            <div class="message-cards">
+                <div class="message-card">
+                    <h3>💝 Berbagi Kebaikan</h3>
+                    <p>Mari kita terus berbagi kebaikan dan kasih sayang kepada semua orang di sekitar kita. Setiap tindakan kecil kita bisa menjadi arti besar bagi orang lain. Jangan pernah berhenti untuk memberikan senyuman dan ketulusan.</p>
+                </div>
+                <div class="message-card">
+                    <h3>🤝 Silaturahmi</h3>
+                    <p>Semoga Idul Fitri ini menjadi momen untuk memperkuat hubungan dan silaturahmi kita semua. Mari kita kunjungi orang-orang terkasih, saling meminta maaf, dan membangun jembatan persahabatan yang lebih kuat dan bermakna.</p>
+                </div>
+                <div class="message-card">
+                    <h3>✨ Berkah Bersama</h3>
+                    <p>Semoga kita semua mendapatkan berkah dan ampunan dari Allah SWT di hari yang mulia ini. Dengan hati yang bersih, mari kita mulai lembaran baru yang penuh harapan, kerendahan hati, dan komitmen untuk menjadi lebih baik.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Beautiful Quotes Section -->
+        <section class="quotes-section">
+            <h2 class="section-title">Kata Mutiara Idul Fitri</h2>
+            <div class="quotes-container">
+                <div class="quote-card quote-1">
+                    <p class="quote-text">
+                        "Idul Fitri adalah hari kemenangan hati yang tulus dan jiwa yang suci. Semoga di hari ini dan seterusnya, kita semua bisa menjadi pribadi yang lebih baik, lebih bijaksana, dan lebih penuh kasih sayang."
+                    </p>
+                    <p class="quote-author">— Keluarga Ananto</p>
+                </div>
+                <div class="quote-card quote-2">
+                    <p class="quote-text">
+                        "Puasa bukan hanya menahan lapar dan haus, tetapi melatih hati untuk lebih peka terhadap penderitaan orang lain dan lebih dermawan dalam berbagi."
+                    </p>
+                    <p class="quote-author">— Kata Bijak Ramadan</p>
+                </div>
+                <div class="quote-card quote-3">
+                    <p class="quote-text">
+                        "Tinta dari tinta pena seorang alim lebih berharga daripada darah seorang syahid. Tetapi hati yang ikhlas dan niat yang tulus bernilai lebih dari semuanya."
+                    </p>
+                    <p class="quote-author">— Pesan Spiritual</p>
+                </div>
+                <div class="quote-card quote-4">
+                    <p class="quote-text">
+                        "Keluarga adalah tempat di mana kita belajar tentang cinta, pengorbanan, dan kebersamaan. Idul Fitri adalah saat yang tepat untuk menghargai setiap momen bersama mereka."
+                    </p>
+                    <p class="quote-author">— Refleksi Keluarga</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Decorative Elements -->
+        <div class="decorative-pattern">
+            <span class="star-decoration">✦</span>
+            <span class="star-decoration">✦</span>
+            <span class="star-decoration">✦</span>
+        </div>
+
+        <!-- Closing Message -->
+        <section class="closing-section">
+            <div class="closing-card">
+                <h2>Semoga Hari Ini Membawa Kebahagiaan</h2>
+                <p>
+                    Terima kasih telah meluangkan waktu untuk merayakan momen istimewa bersama Keluarga Ananto. 
+                    Semoga Allah SWT senantiasa memberikan berkah, kesehatan, dan kebahagiaan untuk kita semua.
+                </p>
+                <p class="closing-blessing">
+                    🌙 Taqabbalallahu Minna wa Minkum 🌙
+                </p>
+                <p class="closing-subtitle">
+                    "Semoga Allah menerima dari kita dan dari kalian semua"
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Keluarga Ananto | Selamat Hari Raya Idul Fitri 1447 H</p>
+            <p class="footer-love">Made with ❤️ for our beloved family</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingStars();
+            addFamilyCardAnimations();
+            addSmoothScroll();
+            initMusicControl();
+        });
+
+        function createFloatingStars() {
+            const starsContainer = document.querySelector('.stars');
+            
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.position = 'absolute';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.background = '#FFD700';
+                star.style.borderRadius = '50%';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.opacity = Math.random() * 0.7 + 0.3;
+                star.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        function addFamilyCardAnimations() {
+            const familyCards = document.querySelectorAll('.family-card');
+            familyCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.animation = 'none';
+                    setTimeout(() => {
+                        this.style.animation = '';
+                    }, 10);
+                });
+            });
+        }
+
+        function addSmoothScroll() {
+            document.documentElement.style.scrollBehavior = 'smooth';
+        }
+
+        function initMusicControl() {
+            const musicToggle = document.getElementById('musicToggle');
+            
+            musicToggle.addEventListener('click', function() {
+                musicToggle.classList.toggle('playing');
+                if (musicToggle.classList.contains('playing')) {
+                    musicToggle.setAttribute('title', 'Matikan Musik');
+                } else {
+                    musicToggle.setAttribute('title', 'Nyalakan Musik');
+                }
+            });
+        }
+
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                createConfetti();
+            }, 800);
+        });
+
+        function createConfetti() {
+            const confettiPieces = 60;
+            const colors = ['#FFD700', '#D4AF37', '#1B7B4F', '#8B4513', '#FFA500', '#E8D5B7'];
+            
+            for (let i = 0; i < confettiPieces; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.opacity = '0.8';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '999';
+                confetti.style.borderRadius = '50%';
+                
+                document.body.appendChild(confetti);
+                
+                const duration = Math.random() * 3 + 2;
+                const xOffset = (Math.random() - 0.5) * 200;
+                const rotation = Math.random() * 360;
+                
+                confetti.animate([
+                    { 
+                        transform: `translateY(0) translateX(0) rotate(0deg)`, 
+                        opacity: 0.8 
+                    },
+                    { 
+                        transform: `translateY(${window.innerHeight + 50}px) translateX(${xOffset}px) rotate(${rotation}deg)`, 
+                        opacity: 0 
+                    }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, duration * 1000);
+            }
+        }
+    </script>
+</body>
+</html>
